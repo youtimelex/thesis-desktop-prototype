@@ -1,0 +1,15 @@
+.login-card .login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vini-base-spacing-600);
+}
+
+.login-card .login-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vini-base-spacing-400);
+}
+
+.login-card .login-actions > button {
+  width: 100%;
+}

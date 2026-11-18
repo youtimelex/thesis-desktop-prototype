@@ -1,0 +1,21 @@
+/* Record navigation and actions live with the open content. */
+.dashboard-shell .linear-card > .record-context-header {
+  flex: 0 0 48px; min-height: 48px; height: 48px; min-width: 0;
+  padding: 4px 18px; gap: 8px; border-bottom: 1px solid var(--main-border);
+  background: var(--main-base);
+}
+.record-context-header .record-context-return { flex: 0 1 auto; min-width: 0; max-width: 40%; }
+.record-context-return-label { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.record-context-header .record-breadcrumbs { position: relative; flex: 1 1 auto; min-width: 0; overflow: hidden; }
+.record-context-header [data-slot="breadcrumb-list"] { flex-wrap: nowrap; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.record-context-header .record-breadcrumb-measure { position: absolute; inset: 0 auto auto 0; width: max-content; max-width: none; visibility: hidden; pointer-events: none; overflow: visible; }
+.record-context-header [data-slot="breadcrumb-list"]::-webkit-scrollbar { display: none; }
+.record-context-header [data-slot="breadcrumb-item"] { min-width: 0; flex-shrink: 1; }
+.record-context-header [data-slot="breadcrumb-item"] > * { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px; }
+.record-context-header [data-slot="breadcrumb-item"]:last-child > * { max-width: none; }
+.record-context-header .detail-toolbar-actions { flex: 0 0 auto; margin-inline-start: 0; }
+.desktop-app.dashboard-shell .linear-card > .record-properties { top: calc(48px + var(--record-toolbar-height)); }
+@media (max-width: 650px) {
+  .dashboard-shell .linear-card > .record-context-header { padding-inline: 8px; gap: 4px; }
+  .record-context-header [data-slot="breadcrumb-item"] > * { max-width: 120px; }
+}

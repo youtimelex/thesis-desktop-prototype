@@ -1,0 +1,8 @@
+/* The group supplies the space between controls; older wrappers added their own margins. */
+.creation-form-fields > .drop-zone,
+.creation-form-fields > .field,
+.creation-form-fields > .area-picker,
+.creation-form-fields > .vini-inline-notice,
+.creation-form-fields > .security-inline {
+  margin: 0;
+}

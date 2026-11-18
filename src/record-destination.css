@@ -1,0 +1,5 @@
+.record-destination-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vini-base-spacing-200);
+}

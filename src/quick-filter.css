@@ -1,0 +1,4 @@
+.quick-filters > .quick-filter-area {
+  flex: 2 1 220px;
+  min-width: 200px;
+}

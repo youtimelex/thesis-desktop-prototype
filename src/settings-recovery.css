@@ -1,0 +1,71 @@
+/* Reconstructed settings composition after local stylesheet loss.
+   Uses current components and verified VINi tokens; not a byte-for-byte recovery. */
+.desktop-app.settings-shell { --sidebar-width:228px; display:flow-root; background:var(--vini-theme-main-base); }
+.settings-shell .settings-sidebar { width:var(--sidebar-width); background:var(--vini-theme-main-base); }
+.desktop-app.settings-shell .desktop-main.content-shell { background:var(--vini-theme-main-space); }
+.settings-sidebar .settings-back { height:28px; min-height:28px; margin-bottom:24px; padding-block:0; }
+.settings-sidebar nav { display:flex; flex-direction:column; gap:4px; }
+.settings-sidebar nav > button { height:43px; min-height:43px; }
+.settings-shell .settings-content { width:100%; max-width:764px; margin-inline:auto; padding:40px 32px 48px; box-sizing:border-box; }
+.settings-shell .settings-page-heading { margin-bottom:32px; }
+.settings-shell .settings-page-heading h1 { font-size:var(--vini-typography-font-size-1100); line-height:var(--vini-typography-font-line-height-1100); font-weight:500; margin:0; }
+.settings-shell .settings-panel { border:0; border-radius:0; background:transparent; padding:0; min-width:0; }
+.settings-shell .settings-panel > h2 { font-size:18px; line-height:26px; margin:0 0 8px; }
+.settings-shell .settings-panel > h3 { font-size:var(--vini-typography-font-size-600); line-height:var(--vini-typography-font-line-height-600); margin:28px 0 12px; }
+.settings-shell .settings-intro { font-size:13px; line-height:21px; margin:0 0 20px; color:var(--main-foreground-secondary); }
+.settings-shell .settings-group-card { margin-bottom:20px; }
+.settings-shell .settings-control-row,.settings-shell .toggle-row { padding:16px 0; min-height:0; gap:24px; }
+.settings-shell .settings-control-row:first-child,.settings-shell .toggle-row:first-child { padding-top:0; }
+.settings-shell .settings-control-row:last-child,.settings-shell .toggle-row:last-child { border-bottom:0; padding-bottom:0; }
+.settings-shell .settings-group-content > .toggle-row:has(+ [data-slot="alert"]) { border-bottom:0; }
+.settings-shell .settings-control-row > div:first-child,.settings-shell .toggle-row > div:first-child { flex:1; min-width:0; }
+.settings-shell .settings-control-row > [role="combobox"] { flex:0 1 230px; min-width:0; max-width:45%; }
+.settings-shell .settings-control-row strong,.settings-shell .toggle-row strong { font-size:var(--vini-typography-font-size-500); line-height:var(--vini-typography-font-line-height-body-500); }
+.settings-shell .settings-control-row p,.settings-shell .toggle-row p { font-size:var(--vini-typography-font-size-400); line-height:var(--vini-typography-font-line-height-body-400); }
+.settings-shell .toggle-row > [role="switch"] { flex-shrink:0; }
+.settings-shell .connection-card,.settings-shell .network-options > button:not([aria-pressed="true"]) { background:var(--vini-theme-main-surface); }
+.settings-shell .connection-card { flex-wrap:wrap; }
+.settings-shell .connection-card > div { min-width:120px; }
+.settings-shell .settings-fact strong { overflow-wrap:anywhere; min-width:0; }
+.settings-shell .settings-account { padding-top:0; }
+.settings-shell .profile-facts { display:grid; gap:16px; margin:24px 0; }
+.settings-shell .profile-facts > div { display:flex; gap:12px; align-items:flex-start; }
+.settings-shell .profile-facts :is(svg,.icon) { flex-shrink:0; color:var(--vini-theme-main-icon); }
+.settings-shell .profile-facts strong { display:block; font-size:13px; line-height:21px; }
+.settings-shell .profile-facts small { display:block; font-size:var(--vini-typography-font-size-400); line-height:var(--vini-typography-font-line-height-body-400); color:var(--main-foreground-secondary); }
+.settings-shell .settings-permission-preview { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+.settings-shell .settings-permission-preview > div { min-width:0; flex:1; }
+.settings-shell .settings-permission-preview strong { font-size:var(--vini-typography-font-size-500); line-height:var(--vini-typography-font-line-height-body-500); }
+.settings-shell .settings-permission-preview p { margin:6px 0 0; color:var(--main-foreground-secondary); font-size:var(--vini-typography-font-size-400); line-height:var(--vini-typography-font-line-height-body-400); }
+.settings-shell .settings-permission-preview [data-slot="badge"] { flex-shrink:0; }
+.settings-shell .storage-stat { border:0; }
+.settings-shell .storage-stat + .storage-stat { border-top:1px solid var(--main-border); }
+.settings-shell .storage-stat:first-child { padding-top:0; }
+.settings-shell .storage-stat:last-child { padding-bottom:0; }
+.settings-shell .settings-note { align-items:start; row-gap:0; }
+.settings-shell .settings-note > :is(svg,.icon) { grid-row:1; margin-top:1px; }
+.settings-shell .settings-note [data-slot="alert-description"] { grid-row:1; min-width:0; }
+.settings-shell .settings-panel > small { display:block; margin-top:24px; color:var(--main-foreground-secondary); }
+@media(max-width:1150px) {
+ .desktop-app.settings-shell { --sidebar-width:76px; }
+ .settings-sidebar button > span:not(.icon),.settings-sidebar [data-slot="sidebar-group-label"] { display:none; }
+ .settings-sidebar nav > button,.settings-sidebar .settings-back { justify-content:center; padding-inline:0; }
+ .settings-sidebar nav > button > :is(svg,.icon),.settings-sidebar .settings-back > :is(svg,.icon) { flex-shrink:0; }
+}
+@media(max-width:650px) {
+ .desktop-app.settings-shell { --sidebar-width:60px; }
+ .settings-shell .settings-content { padding:24px 16px 32px; }
+ .settings-shell .settings-page-heading { margin-bottom:24px; }
+ .settings-shell .settings-page-heading h1 { font-size:24px; line-height:32px; }
+ .settings-shell .settings-control-row { flex-direction:column; align-items:stretch; gap:12px; }
+ .settings-shell .settings-control-row > [role="combobox"] { flex:auto; width:100%; max-width:100%; }
+ .settings-shell .toggle-row { gap:12px; }
+ .settings-shell .settings-permission-preview { flex-wrap:wrap; }
+ .settings-shell .settings-permission-preview > div { flex-basis:100%; }
+ .settings-shell .settings-fact { flex-direction:column; gap:4px; }
+ .settings-shell .settings-fact strong { text-align:left; }
+ .settings-shell .settings-account { gap:12px; flex-wrap:wrap; }
+ .settings-shell .storage-stat { gap:12px; }
+}
+.settings-shell .settings-sidebar { padding-top:24px; }
+.settings-sidebar .settings-back { margin-inline:8px; width:calc(100% - 16px); }

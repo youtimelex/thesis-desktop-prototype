@@ -1,0 +1,55 @@
+/* Single-surface global history and conversation. Message and input primitives remain VINi. */
+.assistant-layout:not(.assistant-layout--record) { display:flex; flex-direction:column; }
+.assistant-layout > .conversation-panel { flex:1; min-height:0; }
+.assistant-layout > .conversation-panel[hidden] { display:none; }
+.assistant-index {display:flex;flex-direction:column;min-height:0;height:100%;}
+.assistant-index-heading {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px;}
+.assistant-index-heading h1 {font-size:22px;line-height:28px;margin:0;}
+.assistant-index-search {padding:0 24px 16px;}
+.assistant-index-list {overflow:auto;min-height:0;padding:0 24px 24px;}
+.assistant-index-row {position:relative;display:flex;align-items:center;gap:8px;}
+.assistant-index-open[data-slot=item] {flex:1;min-width:0;gap:16px;padding:16px 52px 16px 8px;text-align:left;}
+.assistant-index-open>[data-slot=item-content] {flex:1;min-width:0;}
+.assistant-index-open [data-slot=item-description] {overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.assistant-index-open small,.assistant-index-open time {color:var(--main-foreground-secondary);}
+.assistant-index-open time {flex-shrink:0;}
+.assistant-index-open small {display:block;overflow-wrap:anywhere;}
+@media(max-width:800px) {.assistant-index-heading {padding:16px;}.assistant-index-search {padding-inline:16px}.assistant-index-list {padding-inline:16px}.assistant-index-open time {max-width:70px;}}
+.conversation-context {display:block;color:var(--main-foreground-secondary);font-size:12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+
+
+/* Keep the VINi Item's own hover and focus states, as in recent recordings. */
+.assistant-index-row {gap:0;}
+.assistant-index-icon {align-self:flex-start;display:flex;align-items:center;justify-content:center;flex:0 0 25px;height:24px;color:var(--main-foreground-ghost);}
+.assistant-index-actions {position:absolute;right:8px;top:50%;transform:translateY(-50%);}
+.composer-context {max-width:735px;margin:0 auto 8px;}
+.composer-fixed-source {font-size:12px;line-height:20px;color:var(--main-foreground-secondary);}
+.composer-context .composer-source-row {min-height:28px;}
+.composer-context-label,.composer-materials {color:var(--main-foreground-secondary);}
+.assistant-layout .composer-hint {font-size:var(--vini-typography-font-size-400);line-height:var(--vini-typography-font-line-height-400);color:var(--main-foreground-secondary);margin-top:8px;flex-wrap:wrap;}
+
+/* The window names the section; the content header owns the current dialog. */
+.assistant-conversation-header {display:flex;align-items:center;gap:var(--vini-base-spacing-300);flex:0 0 auto;min-width:0;min-height:48px;padding:4px 18px;border-bottom:1px solid var(--main-border);}
+.assistant-conversation-header .assistant-dialog-trigger {min-width:0;max-width:min(100%, 520px);}
+.assistant-dialog-trigger [data-slot="button-label"] {overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.assistant-conversation-actions {display:flex;align-items:center;flex:none;gap:var(--vini-base-spacing-200);margin-inline-start:auto;}
+.assistant-dialog-menu {width:min(420px, calc(100vw - 32px));max-width:min(420px, calc(100vw - 32px));max-height:min(400px, var(--available-height, 400px));overflow-y:auto;}
+.assistant-dialog-menu-item {display:flex;gap:var(--vini-base-spacing-300);min-width:0;}
+.assistant-dialog-menu-title {flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.assistant-dialog-menu-current,.assistant-dialog-menu-date {flex:none;color:var(--vini-theme-main-foreground-secondary);white-space:nowrap;}
+.dialogue-context {display:flex;align-items:center;flex-wrap:wrap;gap:var(--vini-base-spacing-200);padding:var(--vini-base-spacing-200) var(--vini-base-spacing-500);border-bottom:1px solid var(--main-border);flex-shrink:0;font-size:var(--vini-typography-font-size-400);color:var(--main-foreground-secondary);}
+.dialogue-context-label {flex-shrink:0;}
+.dialogue-context-value {min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 160px;}
+.dialogue-context>button {margin-inline-start:auto;flex-shrink:0;}
+@media(max-width:600px){.dialogue-context {padding-inline:var(--vini-base-spacing-400);}.dialogue-context-value {flex-basis:calc(100% - 100px);}}
+.assistant-origin-notice{flex:none;margin:0;padding:8px 24px;color:var(--vini-theme-main-foreground-secondary);background:var(--vini-theme-main-surface);border-bottom:1px solid var(--vini-theme-main-border);}
+.dialogue-context{flex-wrap:wrap;}
+
+/* A sibling label makes the whole source row usable without nesting controls. */
+.source-record--vini > label {display:flex;align-items:center;gap:11px;flex:1;min-width:0;cursor:pointer;}
+.source-record--vini > label > span:first-child {flex:1;min-width:0;}
+.source-record--vini > label > .icon {order:-1;flex:none;}
+.source-record--vini > label:not(:has(> .icon))::before {content:"";flex:0 0 18px;}
+.source-record--vini > [role="checkbox"] {order:1;}
+.source-record--vini:has([role=checkbox]:disabled) > label {cursor:default;}
+

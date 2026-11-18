@@ -1,0 +1,100 @@
+/* Shared page composition and responsive VINi Table catalogue. */
+.shared-page-header { align-items:flex-start; gap:var(--vini-base-spacing-500); }
+.shared-page-header-copy { min-width:0; }
+.shared-page-header .title-with-count { flex-wrap:wrap; }
+.shared-page-header .title-with-count h1 { margin:0; }
+.shared-page-header--truncate-title .shared-page-header-copy { flex:1 1 auto; }
+.shared-page-header--truncate-title .title-with-count { min-width:0; flex-wrap:nowrap; }
+.shared-page-header--truncate-title .title-with-count h1 { flex:0 1 auto; min-width:0; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.shared-page-header--truncate-title .title-with-count > :not(h1) { flex:0 0 auto; }
+.shared-page-header .heading-actions { flex-shrink:0; }
+.dashboard-shell .section-header .shared-page-header--description-below { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; column-gap:16px; row-gap:8px; }
+.shared-page-header--description-below .shared-page-header-copy { grid-column:1; grid-row:1; }
+.shared-page-header--description-below .heading-actions { grid-column:2; grid-row:1; }
+.shared-page-header--description-below .page-description { grid-column:1 / -1; grid-row:2; margin:0; overflow-wrap:anywhere; }
+/* Keep the catalogue's page heading and actions available as its rows scroll. */
+.dashboard-shell .spaces-page .section-header { position:sticky; inset-block-start:0; z-index:5; background:var(--vini-theme-main-base); }
+@media(max-width:600px) {
+ .dashboard-shell .section-header .shared-page-header--description-below { grid-template-columns:minmax(0,1fr); }
+ .dashboard-shell .section-header .shared-page-header--description-below .heading-actions { grid-column:1; grid-row:2; justify-content:flex-start; }
+ .shared-page-header--description-below .page-description { grid-row:3; }
+}
+.workspace-catalogue-container { width:100%; max-width:100%; }
+.workspace-catalogue { table-layout:fixed; width:100%; }
+.workspace-catalogue .workspace-number-column { width:76px; text-align:right; font-variant-numeric:tabular-nums; }
+.workspace-catalogue-link { display:flex; align-items:center; gap:var(--vini-base-spacing-400); width:100%; min-width:0; text-align:left; padding:4px 0; }
+.workspace-catalogue-link > :is(svg,.icon) { flex-shrink:0; color:var(--vini-theme-main-icon); }
+.workspace-catalogue-link > span:not(.icon) { flex:1; min-width:0; }
+.workspace-catalogue-link strong { display:block; font-weight:500; white-space:normal; overflow-wrap:anywhere; }
+.workspace-catalogue-description { display:block; margin-top:2px; color:var(--main-foreground-secondary); font-size:var(--vini-typography-font-size-400); line-height:var(--vini-typography-font-line-height-body-400); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.workspace-catalogue-mobile-facts { display:none; }
+.workspace-catalogue-link:focus-visible { outline:2px solid var(--acc-focus); outline-offset:4px; border-radius:var(--vini-base-border-radius-300); }
+@media(max-width:760px) {
+ .shared-page-header { flex-wrap:wrap; }
+ .shared-page-header .heading-actions { flex-shrink:1; }
+ .workspace-catalogue .workspace-number-column { display:none; }
+ .workspace-catalogue-mobile-facts { display:block; margin-top:4px; font-size:var(--vini-typography-font-size-400); line-height:var(--vini-typography-font-line-height-body-400); white-space:normal; color:var(--main-foreground-secondary); }
+ .workspace-catalogue-link { gap:8px; }
+}
+/* A native button stretches over each table row; the sibling menu sits above it.
+   The table retains its real cell semantics and has no nested controls. */
+.workspace-catalogue-row { position:relative; }
+.workspace-catalogue-row:hover,.workspace-catalogue-row:focus-within { background:var(--vini-theme-main-surface-hover); }
+.workspace-catalogue-row .workspace-catalogue-link { position:static; }
+.workspace-catalogue-row .workspace-catalogue-link::after { content:""; position:absolute; inset:0; z-index:1; }
+.workspace-catalogue-row .workspace-catalogue-link:focus-visible { outline:0; }
+.workspace-catalogue-row .workspace-catalogue-link:focus-visible::after { outline:2px solid var(--acc-focus); outline-offset:-2px; border-radius:var(--vini-base-border-radius-300); }
+.workspace-catalogue .workspace-action-column { width:48px; padding-inline:4px 8px; }
+.workspace-row-actions { display:flex; align-items:center; justify-content:flex-end; gap:4px; }
+.workspace-row-actions button { position:relative; z-index:2; }
+.workspace-row-actions > :is(svg,.icon) { flex-shrink:0; color:var(--vini-theme-main-icon); pointer-events:none; }
+.folder-row-with-actions { position:relative; }
+.folder-row-with-actions > .folder-row-open { flex:1; }
+.folder-row-with-actions > .folder-row-open > span:nth-child(2) { padding-inline-end:36px; }
+
+.folder-row-with-actions > .folder-row-menu { position:absolute; inset-inline-end:38px; top:50%; transform:translateY(-50%); z-index:1; margin:0; }
+@media(max-width:760px) {
+ .workspace-catalogue .workspace-action-column { width:40px; padding-inline:0 4px; }
+ .workspace-row-actions { gap:0; }
+}
+
+/* Folder management uses the same heading inset and row rhythm as the library. */
+.folders-page > .page-inner { max-width:none; padding:24px 28px 36px; }
+.folders-page .shared-page-header { min-height:0; margin-bottom:20px; align-items:center; }
+@media(max-width:760px) {
+ .folders-page > .page-inner { padding:24px 28px 28px; }
+ .folders-page .shared-page-header { align-items:flex-start; }
+}
+
+/* Product composition around VINi Item xs: compact list rhythm, sibling menu.
+   Record rows are 46px in dense desktop mode; 48px accommodates shared actions. */
+.compact-folder-list[data-slot="item-group"] { gap:0; width:100%; border-top:1px solid var(--vini-theme-main-border); }
+.compact-folder-row { position:relative; border-bottom:1px solid var(--vini-theme-main-border); }
+.compact-folder-row:hover,.compact-folder-row:focus-within { background:var(--vini-theme-main-surface-hover); }
+.compact-folder-open[data-slot="item"] { min-height:48px; flex-wrap:nowrap; border:0; border-radius:0; background:transparent; }
+.compact-folder-open [data-slot="item-content"] { flex:1; }
+.compact-folder-open [data-slot="item-title"] { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.compact-folder-open>:is(svg,.icon) { flex-shrink:0; color:var(--vini-theme-main-icon); }
+.compact-folder-count { flex-shrink:0; font-size:var(--vini-typography-font-size-500); color:var(--vini-theme-main-foreground-secondary); font-variant-numeric:tabular-nums; }
+.compact-folder-row--actions .compact-folder-count { margin-inline-end:40px; }
+.compact-folder-menu { position:absolute!important; inset-inline-end:28px; top:50%; transform:translateY(-50%); }
+@media(max-width:600px) {
+ .compact-folder-open[data-slot="item"] { gap:var(--vini-base-spacing-300); }
+ .compact-folder-count { font-size:var(--vini-typography-font-size-400); }
+ .compact-folder-row--actions .compact-folder-count { margin-inline-end:36px; }
+}
+/* The table owns its row appearance; these rules arrange the member content. */
+.members-table-container { width:100%; max-width:100%; }
+.members-table { table-layout:fixed; width:100%; }
+.members-table .member-role-column { width:20%; }
+.member-identity { display:flex; align-items:center; gap:var(--vini-base-spacing-400); min-width:0; }
+.member-name { min-width:0; overflow-wrap:anywhere; }
+.member-name > small { margin-inline-start:var(--vini-base-spacing-300); color:var(--vini-theme-main-foreground-secondary); }
+.members-table .member-email-column,.members-table .member-role-column { overflow-wrap:anywhere; }
+@media(max-width:850px) {
+ .members-table .member-email-column { display:none; }
+ .members-table .member-role-column { width:128px; }
+}
+
+.workspace-catalogue .workspace-owner-column { width:160px; color:var(--vini-theme-main-foreground-secondary); overflow-wrap:anywhere; }
+@media(max-width:760px) { .workspace-catalogue .workspace-owner-column { display:none; } }

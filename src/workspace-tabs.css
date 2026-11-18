@@ -1,0 +1,27 @@
+/* Each workspace button and its close action are independent VINi controls. */
+.desktop-app.dashboard-shell .unified-window-toolbar { background:var(--vini-theme-main-space); }
+.workspace-tabs-strip { display:flex; align-items:center; gap:4px; flex:0 1 auto; min-width:0; max-width:100%; }
+.dashboard-shell .unified-window-toolbar .workspace-tabs-list {
+  display:flex; align-items:center; gap:4px; flex:0 1 auto; min-width:0; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  scrollbar-width:thin; white-space:nowrap;
+}
+.workspace-tab-item { position:relative; flex:1 1 190px; width:190px; min-width:64px; max-width:190px; background:var(--vini-theme-main-base); border-radius:var(--vini-component-button-border-radius); }
+.workspace-tab-item--active { background:var(--vini-theme-main-surface-active); }
+@media (hover:hover) { .workspace-tab-item:hover { background:var(--vini-theme-main-surface-hover); } }
+.workspace-tab-item .workspace-tab-trigger { width:100%; min-width:0; justify-content:flex-start; }
+.workspace-tab-item .workspace-tab-label { display:block; min-width:0; margin-inline-start:var(--vini-base-spacing-350); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.workspace-tab-item--closable:hover .workspace-tab-label,
+.workspace-tab-item--closable:focus-within .workspace-tab-label { margin-inline-end:24px; }
+.workspace-tab-item .workspace-tab-close { position:absolute; inset-inline-end:4px; top:50%; transform:translateY(-50%); width:24px; min-width:24px; height:24px; opacity:0; }
+.workspace-tab-item:hover .workspace-tab-close,
+.workspace-tab-item:focus-within .workspace-tab-close { opacity:1; }
+@media (hover:none) {
+ .workspace-tab-item .workspace-tab-close { opacity:1; }
+ .workspace-tab-item--closable .workspace-tab-label { margin-inline-end:24px; }
+}
+.workspace-tab-add { flex:none; }
+.dashboard-shell .unified-window-toolbar .page-navigation-fallback { display:none; }
+.dashboard-shell .unified-window-toolbar #page-toolbar-slot:not(:empty) { flex:0 1 40%; }
+@media(max-width:600px) {
+ .workspace-tabs-strip { flex:1 0 100%; }
+}

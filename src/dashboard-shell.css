@@ -1,0 +1,193 @@
+/* DashboardReference composition. Uses the example’s native width and radius tokens. */
+.desktop-app.dashboard-shell {position:relative;display:flex;block-size:100dvh;min-block-size:0;overflow:hidden;--sidebar-width:calc(var(--vini-base-sizing-600)*6 + var(--vini-base-spacing-500));--app-shell-radius:var(--vini-base-border-radius-500);}
+/* Keep the compact navigation and its backdrop inside this application window. */
+.window-navigation-overlay,.window-navigation-viewport {position:absolute;inset:0;min-block-size:0;}
+.window-navigation-sheet[data-slot="sheet-content"] {position:absolute;inset-block:0;inline-size:min(calc(var(--vini-base-sizing-600) * 7), calc(100% - var(--vini-base-spacing-500)));block-size:100%;padding:0;gap:0;overflow:hidden;}
+.window-navigation-sheet > [data-slot="sidebar"] {inline-size:100%;block-size:100%;}
+.desktop-app.dashboard-shell .desktop-main.content-shell.dashboard-workspace {position:relative;display:flex;flex-direction:column;flex:1;min-width:0;min-height:0;height:calc(100dvh - 16px);margin:8px 8px 8px 0;border:0;border-radius:var(--app-shell-radius);overflow:hidden;background:var(--vini-theme-main-base);}
+.dashboard-shell .dashboard-topbar {flex-shrink:0;border-start-start-radius:inherit;border-start-end-radius:inherit;}
+.dashboard-topbar>span {font-size:var(--vini-typography-font-size-500);line-height:var(--vini-typography-font-line-height-body-500);}
+.desktop-app.dashboard-shell .player-dock {position:absolute;inset:auto 0 0 0;width:auto;border:0;border-top:1px solid var(--main-border);border-bottom-left-radius:var(--app-shell-radius);border-bottom-right-radius:var(--app-shell-radius);}
+/* Sheet navigation occupies no permanent rail. The native trigger remains in the content header. */
+@media(max-width:1150px){.desktop-app.dashboard-shell .desktop-main.content-shell.dashboard-workspace {margin-inline:8px;}}
+.desktop-app.dashboard-shell:has(>[data-slot="sidebar"][data-state="collapsed"]) .desktop-main.content-shell.dashboard-workspace {margin-inline-start:8px;}
+/* Settings share the same shell geometry; only the established surface inversion differs. */
+.desktop-app.dashboard-shell.settings-shell {display:flex;--sidebar-width:calc(var(--vini-base-sizing-600)*6 + var(--vini-base-spacing-500));--app-shell-radius:var(--vini-base-border-radius-500);background:var(--vini-theme-main-base);}
+.desktop-app.dashboard-shell.settings-shell .desktop-main.content-shell.dashboard-workspace {background:var(--vini-theme-main-space);}
+.dashboard-shell.settings-shell .dashboard-topbar {background:var(--vini-theme-main-base);}
+.dashboard-shell.settings-shell .dashboard-settings-sidebar,.dashboard-shell.settings-shell [data-slot="sidebar-inner"] {background:var(--vini-theme-main-base);}
+/* The mobile Sheet is portalled outside the app shell; keep its settings surface inversion there too. */
+.dashboard-settings-sidebar,.dashboard-settings-sidebar [data-slot="sidebar-inner"] {background:var(--vini-theme-main-base);}
+.atlas-sidebar.dashboard-settings-sidebar {background:var(--vini-theme-main-base);}
+/* Product brand composition uses the same Header and VINi icon frame in both navigation branches. */
+.atlas-brand {display:flex;align-items:center;gap:var(--vini-base-spacing-300);padding:var(--vini-base-spacing-300);}
+.atlas-brand>[data-slot="item-media"] {flex:none;}
+/* Product badge and action share the end of a navigation row. */
+.space-nav-item .atlas-project-link {transition-property:inline-size;}
+.space-nav-item[data-action-hover="true"]:is(:hover,:focus-within,:has([data-slot="sidebar-menu-action"][aria-expanded="true"])) .space-nav-count {visibility:hidden;}
+.space-nav-item[data-action-hover="false"] .space-nav-count {inset-inline-end:var(--vini-base-sizing-500);}
+.space-nav-item[data-action-hover="false"] .atlas-project-link {padding-inline-end:calc(var(--vini-base-sizing-500) + var(--vini-base-sizing-400));}
+.space-nav-item:has([data-slot="sidebar-menu-action"][aria-expanded="true"]) [data-slot="sidebar-menu-action"] {opacity:1;pointer-events:auto;}
+/* ItemMedia supplies icon semantics/layout; the product brand adds its token-based frame. */
+.atlas-brand>[data-slot="item-media"] {width:var(--vini-base-sizing-500);height:var(--vini-base-sizing-500);border:var(--vini-base-border-width-500) solid var(--vini-theme-main-border);border-radius:var(--vini-base-border-radius-400);background:var(--vini-theme-main-surface);}
+/* One shell navigation band; record toolbar is portalled here to preserve source-aware return. */
+.dashboard-topbar {min-width:0;}
+.page-navigation-fallback,#page-toolbar-slot {min-width:0;flex:1;}
+#page-toolbar-slot:empty {display:none;}
+.dashboard-topbar:has(#page-toolbar-slot:not(:empty))>.page-navigation-fallback {display:none;}
+.dashboard-topbar #page-toolbar-slot>.shell-record-toolbar {border:0;padding:0;min-height:0;background:transparent;display:flex;width:100%;gap:var(--vini-base-spacing-300);}
+.dashboard-topbar [data-slot="breadcrumb"] {min-width:0;}
+.dashboard-topbar [data-slot="breadcrumb-list"] {flex-wrap:nowrap;min-width:0;overflow:hidden;}
+.dashboard-topbar [data-slot="breadcrumb-item"] {min-width:0;flex-shrink:1;}
+.dashboard-topbar [data-slot="breadcrumb-item"]>* {overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;}
+.dashboard-topbar .record-breadcrumbs {flex:1;}
+.dashboard-topbar .detail-toolbar-actions {margin-inline-start:auto;flex:none;}
+/* Narrow lists retain all essential text instead of squeezing desktop columns to zero. */
+@media(max-width:760px){
+ .dashboard-shell .linear-view.mode-list .compact-row-body {flex-direction:column;align-items:stretch;gap:4px;padding-inline-end:24px;}
+ .dashboard-shell .linear-view.mode-list .compact-row-top {display:flex;flex-wrap:wrap;gap:2px;}
+ .dashboard-shell .linear-view.mode-list .compact-row-top strong {flex:1 0 100%;font-size:14px;line-height:20px;}
+ .dashboard-shell .linear-view.mode-list .compact-row-top .row-date {width:auto;text-align:start;}
+ .dashboard-shell .linear-view.mode-list .compact-row-meta {width:100%;gap:5px;}
+
+}
+@media(max-width:760px){
+ .desktop-app.dashboard-shell .player-dock {grid-template-columns:minmax(0,1fr) 55px;gap:8px;padding-inline:16px;}
+ .desktop-app.dashboard-shell .player-dock .player-transport {gap:8px;}
+ .desktop-app.dashboard-shell .player-dock .player-transport>[data-slot="button"] {flex-shrink:0;}
+}
+@media(max-width:760px){
+ .dashboard-shell .linear-view.mode-list .record-table .compact-row-meta .row-area {display:inline;flex:1 1 auto;}
+ .dashboard-shell .linear-view.mode-list .record-table .compact-row-meta .row-duration {display:inline;flex:none;}
+}
+/* Window review: one deliberate inset below record tabs, not stacked legacy paddings. */
+.dashboard-shell .linear-card .record-inner {padding-top:var(--vini-base-spacing-500);}
+.dashboard-shell .linear-card .record-main {padding-top:0!important;}
+.dashboard-shell .linear-card .summary-card {padding-top:0;}
+/* Preview-only unified titlebar. Product composition, not an OS toolbar. */
+.desktop-app.dashboard-shell {--window-toolbar-height:44px;padding-block-start:var(--window-toolbar-height);}
+.desktop-app.dashboard-shell .desktop-main.content-shell.dashboard-workspace {height:calc(100dvh - var(--window-toolbar-height) - 16px);}
+.dashboard-shell [data-slot="sidebar-container"] {inset-block-start:var(--window-toolbar-height);}
+.dashboard-shell .unified-window-toolbar {position:fixed;inset:0 0 auto;z-index:110;height:var(--window-toolbar-height);min-height:var(--window-toolbar-height);display:flex;align-items:center;gap:12px;padding:8px 16px;border-radius:0;background:var(--vini-theme-main-space);border-bottom:1px solid var(--vini-theme-main-border);}
+.preview-traffic {display:flex;gap:8px;flex:none;margin-right:8px;}
+.preview-traffic i {width:12px;height:12px;border-radius:50%;background:#ff6058;box-shadow:inset 0 0 0 1px #0002;}
+.preview-traffic i:nth-child(2){background:#ffbd2e}.preview-traffic i:nth-child(3){background:#28c840}
+.window-navigation-controls {display:flex;align-items:center;gap:4px;flex:none;}
+.unified-window-toolbar [data-slot="breadcrumb"] {overflow:auto;scrollbar-width:thin;}
+.unified-window-toolbar [data-slot="breadcrumb-list"] {overflow:visible;}
+.unified-window-toolbar [data-slot="breadcrumb-item"] {flex-shrink:0;max-width:240px;}
+@media(max-width:600px){
+ .desktop-app.dashboard-shell {--window-toolbar-height:72px;}
+ .dashboard-shell .unified-window-toolbar {flex-wrap:wrap;gap:4px 12px;padding:6px 12px;align-content:center;}
+ .unified-window-toolbar>.page-navigation-fallback,.unified-window-toolbar>#page-toolbar-slot {flex:1 0 100%;max-width:100%;}
+ .unified-window-toolbar [data-slot="breadcrumb-item"] {max-width:160px;}
+}
+/* 4188 annotation review: quiet shell and a single intentional gap below tabs. */
+.dashboard-shell .unified-window-toolbar{border-bottom:0;}
+.dashboard-shell .linear-card>.record-local-toolbar{margin-bottom:0;}
+.dashboard-shell .linear-card .record-inner{padding-top:8px!important;}
+.dashboard-shell .linear-card .record-heading{padding-top:0!important;}
+.desktop-app.dashboard-shell .player-dock{grid-template-columns:max-content minmax(0,1fr) auto;gap:16px;min-height:72px;height:auto;padding:12px 20px;align-items:center;}
+.dashboard-shell .player-dock>.player-transport{display:flex;align-items:center;justify-content:flex-start;gap:4px;}
+.dashboard-shell .player-center{min-width:0;}
+.dashboard-shell .player-dock--mini .player-identity{display:flex;max-width:100%;}
+@media(max-width:760px){
+ .desktop-app.dashboard-shell .player-dock{grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:12px 16px;}
+ .dashboard-shell .player-dock>.player-transport{grid-column:1;grid-row:1;}
+ .dashboard-shell .player-dock>.player-options{grid-column:2;grid-row:1;}
+ .dashboard-shell .player-dock>.player-center{grid-column:1/-1;grid-row:2;}
+}
+/* The former 49px internal header was moved into the window toolbar. */
+.dashboard-shell .linear-card{--record-toolbar-height:60px;--record-toolbar-padding:12px 24px;}
+.dashboard-shell .linear-card>.record-properties{top:var(--record-toolbar-height);padding-top:8px;}
+/* Remove the old second-row transport offset; the controls now share the dock row. */
+.dashboard-shell .player-dock>.player-transport{margin-top:0;align-self:center;}
+
+/* The settings window toolbar uses the Base surface. */
+.dashboard-shell.settings-shell .unified-window-toolbar{background:var(--vini-theme-main-base);}
+
+.atlas-brand-row{display:flex;align-items:center;min-width:0;}
+button.atlas-brand{flex:1;min-width:0;width:100%;text-align:left;border-radius:var(--vini-base-border-radius-400);cursor:pointer;}
+button.atlas-brand:hover{background:var(--vini-theme-main-surface-hover);}
+button.atlas-brand:focus-visible{outline:2px solid var(--acc-focus);outline-offset:-2px;}
+
+/* Record rows follow their content, not a viewport-wide legacy two-line minimum. */
+.dashboard-shell .linear-view.mode-list .records-pane .record-row-open {min-height:46px;padding-block:7px;padding-inline:14px 62px;align-items:center;}
+.dashboard-shell .linear-view.mode-list .records-pane .row-actions {top:50%;right:14px;transform:translateY(-50%);}
+.dashboard-shell .linear-view.mode-list .records-pane {border-inline-end:0;}
+@container record-list (max-width:600px) {
+ .dashboard-shell .linear-view.mode-list .records-pane .record-row-open {min-height:0;padding-block:8px;}
+}
+/* One product header composition using VINi Heading, Badge and controls. */
+.dashboard-shell .section-header {flex-shrink:0;padding:24px 28px 16px;border-bottom:1px solid var(--main-border);}
+.dashboard-shell .section-header .shared-page-header {display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;min-height:36px;margin:0;}
+.dashboard-shell .section-header .shared-page-header:has(+*) {margin-bottom:20px;}
+.dashboard-shell .section-header .heading-actions {display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;}
+.dashboard-shell .section-header .assistant-index-search {padding:0;}
+.dashboard-shell .home-workspace {padding-top:0;}
+.dashboard-shell .home-workspace>.section-header {margin-inline:-32px;}
+.dashboard-shell .spaces-page>.page-inner {padding:0 28px 36px;}
+.dashboard-shell .spaces-page .section-header {margin-inline:-28px;margin-bottom:24px;}
+@media(max-width:1050px){.dashboard-shell .home-workspace>.section-header {margin-inline:-24px;}}
+@media(max-width:760px){.dashboard-shell .home-workspace>.section-header {margin-inline:-18px;}}
+@media(max-width:480px){
+ .dashboard-shell .section-header .shared-page-header {flex-wrap:wrap;}
+ .dashboard-shell .section-header .heading-actions {justify-content:flex-start;}
+}
+
+/* Shared page gutters and rhythm; responsive rows retain their content height. */
+.dashboard-shell {--page-gutter:28px;--section-gap:24px;}
+.dashboard-shell .section-header {padding:24px var(--page-gutter) 16px;}
+.dashboard-shell .home-workspace {max-width:none;padding:0 var(--page-gutter) 36px;gap:var(--section-gap);}
+.dashboard-shell .home-workspace>.section-header {margin-inline:calc(-1 * var(--page-gutter));border-bottom:0;}
+.dashboard-shell .spaces-page>.page-inner {max-width:none;padding:0 var(--page-gutter) 36px;}
+.dashboard-shell .spaces-page .section-header {margin-inline:calc(-1 * var(--page-gutter));margin-bottom:var(--section-gap);}
+.dashboard-shell .assistant-index-list {padding:var(--section-gap) var(--page-gutter) 24px;}
+.dashboard-shell .assistant-index-row {padding-inline:0;align-items:center;}
+.dashboard-shell .linear-view.mode-list .records-pane .library-page {padding:var(--section-gap) var(--page-gutter) 24px;}
+.dashboard-shell .linear-view.mode-list .records-pane .record-row-open {padding-inline:8px 66px;}
+.dashboard-shell .linear-view.mode-list .records-pane .row-actions {top:50%;bottom:auto;right:8px;transform:translateY(-50%);display:flex;align-items:center;}
+.dashboard-shell .workspace-catalogue th,.dashboard-shell .members-table-heading,.dashboard-shell .table-heading {color:var(--vini-theme-main-foreground-secondary);}
+.dashboard-shell .record-facts>div:last-child {border-bottom:0;}
+.dashboard-shell .linear-view.mode-list .records-pane .section-header .page-description {display:block;}
+
+/* Mobile parity: real VINi metadata badges and a desktop export chooser. */
+.record-parameter-tags {display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.transcript-sticky-header .section-heading {flex-wrap:wrap;}
+.transcript-sticky-header .record-parameter-tags {margin-top:0;margin-inline-start:auto;}
+.export-record-name {margin:0 0 16px;font-weight:500;overflow-wrap:anywhere;}
+.export-audio>button {width:100%;justify-content:flex-start;}
+.export-audio p {margin:8px 0 16px;color:var(--main-foreground-secondary);font-size:var(--vini-typography-font-size-400);line-height:var(--vini-typography-font-line-height-body-400);}
+.export-format-list {display:flex;flex-direction:column;border:1px solid var(--main-border);border-radius:var(--radius-md);overflow:hidden;}
+.export-format-list>button {display:flex;justify-content:flex-start;width:100%;border-radius:0;min-height:44px;padding-inline:16px;}
+.export-format-list>button+button {border-top:1px solid var(--main-border);}
+.export-format-list small {margin-left:auto;font-size:var(--vini-typography-font-size-400);color:var(--main-foreground-secondary);}
+.export-format-list :is(svg,.icon) {margin-left:auto;flex-shrink:0;}
+.export-format-list small+:is(svg,.icon) {margin-left:8px;}
+.export-error {color:var(--error-foreground);font-size:13px;}
+
+.export-format-list>button>span {display:flex;align-items:center;gap:12px;flex:1;width:100%;text-align:left;}
+
+/* Record review: title alignment and one independently collapsible video block. */
+.record-title-with-type {flex-direction:column;align-items:flex-start;gap:12px;}
+.record-title-with-type .record-source-frame {align-self:flex-start;flex-shrink:0;}
+.record-video-heading {width:100%;justify-content:space-between;padding:0 0 12px;min-height:32px;}
+.record-video-heading>span:first-child {text-align:left;flex:1;}
+.record-video-heading>span:last-child {flex:0 0 auto;}
+.record-video-heading[aria-expanded="false"] {padding-bottom:0;}
+.record-video-controls {display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:32px auto;gap:0 12px;align-items:center;margin:12px 0 0;}
+.record-video-controls .video-play-toggle {grid-column:1;grid-row:1;align-self:center;}
+.video-progress-track {grid-column:2;grid-row:1;display:flex;align-items:center;min-width:0;height:32px;padding-inline:8px;}
+.video-progress-track>* {width:100%;}
+.video-time {grid-column:2;grid-row:2;display:block;text-align:right;padding-right:8px;font-variant-numeric:tabular-nums;color:var(--main-foreground-secondary);}
+.transcript-speaker-count {margin-inline-start:auto;color:var(--main-foreground-secondary);}
+.record-heading .record-title-with-type {padding-block:8px;}
+.record-heading .record-title-with-type h1 {margin-block:0;}
+
+/* Workspace descriptions span the row below the title and its actions. */
+.dashboard-shell .section-header .shared-page-header.shared-page-header--description-below {
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:16px;row-gap:8px;
+}
+@media(max-width:600px){
+ .dashboard-shell .section-header .shared-page-header.shared-page-header--description-below {grid-template-columns:minmax(0,1fr);}
+}

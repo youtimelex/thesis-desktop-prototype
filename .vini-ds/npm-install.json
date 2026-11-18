@@ -1,0 +1,16 @@
+{
+  "installer": "vini-npm",
+  "generation": "8303ddc6-db8f-4eae-9220-5f806930feda",
+  "distribution": {
+    "version": "0.1.0-alpha.14",
+    "ui": "@vini-ds/ui",
+    "tokens": "@vini-ds/tokens",
+    "agent": "@vini-ds/agent"
+  },
+  "appRoot": ".",
+  "entry": "src/main.tsx",
+  "entryMode": "preserved-manual",
+  "configTable": "[mcp_servers.vini-ds]\ncommand = \"node\"\nargs = [\"/Users/aleksandrcagan/thesis/mvp0-desktop-vini-focus-preview/.vini-ds/npm-launcher.mjs\"]\nenabled = true\nstartup_timeout_sec = 10",
+  "skillSha256": "c2a2a0e901a0ee074c6e9a326a58199d05616b81c76340b593cd19d992e050c1",
+  "launcherSha256": "a839349c980129fc1a186cf3ba04943b0f0f348a20ffa427ed3d2980f6439fda"
+}

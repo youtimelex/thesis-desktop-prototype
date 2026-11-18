@@ -1,0 +1,15 @@
+/* Record view replaces global navigation with a compact way back. */
+.desktop-app.dashboard-shell.meeting-focus { --sidebar-width: 0px; }
+.desktop-app.dashboard-shell.meeting-focus .desktop-main.content-shell.dashboard-workspace { margin-inline: 8px; }
+.focus-record-controls { display: flex; align-items: center; min-width: 0; gap: var(--vini-base-spacing-200); }
+.focus-record-actions, #focus-record-actions-slot { display: flex; align-items: center; gap: var(--vini-base-spacing-200); }
+.focus-record-actions { margin-inline-start: auto; flex: none; }
+.linear-view.mode-full .list-detail-layout.focus-detail-layout { display: flex; position: relative; min-width: 0; min-height: 0; }
+.focus-detail-layout > .detail-pane { flex: 1 1 0; min-width: 0; }
+/* The properties start below material tabs when the context bar is in the window toolbar. */
+.desktop-app.dashboard-shell.meeting-focus .linear-card.has-window-actions > .record-properties { top: var(--record-toolbar-height); }
+.desktop-app.dashboard-shell.meeting-focus .linear-card > .record-properties--overlay { display: block; z-index: 2; width: min(337.5px, 45vw); background: var(--main-base); box-shadow: var(--vini-elevation-light-200); }
+@media (max-width: 600px) {
+  .desktop-app.dashboard-shell.meeting-focus { --window-toolbar-height: 44px; }
+  .dashboard-shell.meeting-focus .unified-window-toolbar { flex-wrap: nowrap; }
+}

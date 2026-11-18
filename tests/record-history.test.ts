@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { initialState } from '../src/fixtures.ts';
+import { reducer, recordDialogs } from '../src/model.ts';
+test('multiple record conversations preserve draft and immutable scope, exclude missing source',()=>{
+ let s=initialState();
+ s=reducer(s,{type:'ensure-record-dialog',recordId:'project-committee',dialogId:'history-a',now:1});
+ s=reducer(s,{type:'update-dialog',id:'history-a',patch:{draft:'first question'},now:2});
+ const reused=reducer(s,{type:'ensure-record-dialog',recordId:'project-committee',dialogId:'history-b',now:3,fresh:true});
+ assert.equal(reused,s);
+ assert.equal(reused.dialogs.find(d=>d.id==='history-a')?.draft,'first question');
+ assert.equal(reused.dialogs.some(d=>d.id==='history-b'),false);
+
+ s=reducer(s,{type:'send',id:'history-a',turnId:'first-turn',now:4});
+ assert.equal(s.dialogs.find(d=>d.id==='history-a')?.turns[0]?.question,'first question');
+ s=reducer(s,{type:'update-dialog',id:'history-a',patch:{draft:'unsent'},now:5});
+ s=reducer(s,{type:'ensure-record-dialog',recordId:'project-committee',dialogId:'history-b',now:6,fresh:true});
+ const ids=recordDialogs(s,'project-committee').map(d=>d.id);
+ assert.ok(ids.includes('history-a'));
+ assert.ok(ids.includes('history-b'));
+ assert.notEqual(ids.indexOf('history-a'),ids.indexOf('history-b'));
+ assert.equal(s.dialogs.find(d=>d.id==='history-a')?.draft,'unsent');
+ const originalScope=s.dialogs.find(d=>d.id==='history-b')?.scope;
+ assert.deepEqual(originalScope,{mode:'explicit',areaId:'all',recordIds:['project-committee']});
+ s=reducer(s,{type:'update-dialog',id:'history-b',patch:{scope:{mode:'auto',areaId:'all',recordIds:[]}},now:7});
+ assert.deepEqual(s.dialogs.find(d=>d.id==='history-b')?.scope,originalScope);
+ const unchanged=reducer(s,{type:'ensure-record-dialog',recordId:'does-not-exist',dialogId:'history-c',now:8,fresh:true});
+ assert.equal(unchanged,s);
+ assert.deepEqual(recordDialogs(s,'does-not-exist'),[]);
+});

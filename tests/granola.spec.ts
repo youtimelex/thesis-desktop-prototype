@@ -1,0 +1,11 @@
+import {test,expect} from '@playwright/test';
+test('meeting materials, shared contextual draft, focus and audio remain available',async({page})=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');await page.getByTestId('record-row-project-committee').locator('.record-row-open').click();
+ await page.getByRole('button',{name:'Спросить по записи',exact:true}).click();await page.getByRole('textbox',{name:'Вопрос Ассистенту'}).fill('Какие решения приняты?');
+ await page.getByRole('button',{name:'Сосредоточиться на встрече',exact:true}).click();await expect(page.locator('.sidebar')).toBeHidden();await expect(page.locator('.player-dock')).toBeVisible();await expect(page.getByRole('tab',{name:/^Резюме:/})).toBeVisible();
+ await page.screenshot({path:'qa/granola-focus-chat.png'});
+ await page.getByRole('tab',{name:/^Ассистент:/}).click();await expect(page.getByRole('textbox',{name:'Вопрос Ассистенту'})).toHaveValue('Какие решения приняты?');await expect(page.locator('.meeting-chat')).toHaveCount(0);
+ await page.getByRole('tab',{name:/^Транскрипция:/}).click();await expect(page.locator('.meeting-chat')).toBeVisible();await page.getByRole('button',{name:'Скрыть диалог',exact:true}).click();await page.getByRole('tab',{name:/^Сведения:/}).click();await expect(page.getByRole('tabpanel')).toBeVisible();
+ await page.getByRole('button',{name:'Показать навигацию',exact:true}).click();await expect(page.locator('.sidebar')).toBeVisible();await page.getByRole('button',{name:'Вернуться к списку',exact:true}).click();await expect(page.getByTestId('record-row-project-committee')).toHaveClass(/is-selected/);expect(errors).toEqual([]);
+});
+test('global and folder Assistant remain distinct entry points',async({page})=>{await page.goto('/');await page.getByRole('navigation',{name:'Основная навигация'}).getByRole('button',{name:'Ассистент',exact:true}).click();await expect(page).toHaveURL(/assistant/);await page.goto('/#/spaces/project/folders/project-planning');await page.getByRole('button',{name:'Ассистент',exact:true}).last().click();await expect(page).toHaveURL(/assistant/);await expect(page.getByRole('textbox',{name:'Вопрос Ассистенту'})).toBeVisible();});

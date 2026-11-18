@@ -1,0 +1,168 @@
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Тезис · окно macOS · веб-превью</title><style>
+/* Web approximation of macOS window geometry, not a documented AppKit radius. */
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#f5f5f7}body.preview-page{background:radial-gradient(ellipse at 75% 20%,#5c4a7f 0,transparent 55%),radial-gradient(ellipse at 15% 90%,#27526b 0,transparent 60%),#1b2433;overflow:hidden}.stage{height:100dvh;display:flex;justify-content:center;align-items:center;padding:28px 36px}.mac-window{width:min(1280px,100%);height:100%;max-height:900px;display:flex;flex-direction:column;border:1px solid #ffffff2a;border-radius:20px;overflow:hidden;background:#17191d;box-shadow:0 35px 80px #0006,0 5px 20px #0005;transition:width .2s ease}.titlebar{height:36px;flex:none;display:flex;align-items:center;position:relative;padding:0 14px;border-bottom:1px solid #0005;background:linear-gradient(#323438,#292b30);user-select:none}.traffic-lights{display:flex;gap:8px}.traffic-lights i{width:12px;height:12px;border-radius:50%;background:#ff6058;border:1px solid #0002}.traffic-lights i:nth-child(2){background:#ffbd2e}.traffic-lights i:nth-child(3){background:#28c840}.window-title{position:absolute;left:90px;right:90px;text-align:center;font-size:12px;color:#e5e5e9}.window-label{margin-left:auto;font-size:10px;color:#b5b7c0}iframe{width:100%;flex:1;min-height:0;border:0;background:#151619}.frameless .stage{padding:0}.frameless .mac-window{width:100%!important;max-height:none;border:0;border-radius:0;box-shadow:none}.frameless .titlebar{display:none}@media(max-width:700px){.stage{height:100dvh;padding:12px}.window-label{display:none}.window-title{left:75px;right:20px}.mac-window{border-radius:20px}.size-control{display:none}}@media(prefers-reduced-motion:reduce){.mac-window{transition:none}}
+
+#root{position:relative;flex:1;min-height:0;width:100%;transform:translateZ(0);overflow:hidden;--preview-height:800px}
+#root .desktop-app.dashboard-shell{height:var(--preview-height);block-size:var(--preview-height)}
+#root .desktop-app.dashboard-shell .desktop-main.content-shell.dashboard-workspace{height:calc(var(--preview-height) - var(--window-toolbar-height) - 16px)}
+#root [data-slot="sidebar-gap"]{height:calc(var(--preview-height) - var(--window-toolbar-height));block-size:calc(var(--preview-height) - var(--window-toolbar-height))}
+</style><link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<script type="module" src="/src/main.tsx"></script></head><body class="preview-page"><main class="stage"><section class="mac-window" aria-label="Имитация окна macOS"><div id="root"></div></section></main><script>
+const root=document.getElementById('root');new ResizeObserver(()=>root.style.setProperty('--preview-height',root.clientHeight+'px')).observe(root);
+</script></body></html>

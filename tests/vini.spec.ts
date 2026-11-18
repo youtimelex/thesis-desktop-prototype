@@ -1,0 +1,16 @@
+import {test,expect} from '@playwright/test';
+test('VINi home, source isolation, materials, dialog and draft',async({page})=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});await page.goto('/');await expect(page.getByRole('heading',{name:'Записи',exact:true})).toBeVisible();
+ await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
+ await expect(page.getByRole('button',{name:'Записать',exact:true})).toHaveClass(/_root_/);
+ await page.getByRole('combobox',{name:'Источники вопроса'}).click();await page.getByRole('option',{name:'Проектный комитет',exact:true}).click();
+ await expect(page.getByText('Новая запись: Личное',{exact:true})).toBeVisible();
+ await page.getByRole('textbox',{name:'Поиск записей на главной'}).fill('Проектный комитет');await expect(page.locator('.vini-record-row')).toHaveCount(1);await page.getByRole('textbox',{name:'Поиск записей на главной'}).fill('');
+ await page.screenshot({path:'qa/vini-home.png'});await page.getByTestId('meeting-card-project-committee').click();await expect(page.getByRole('tab')).toHaveCount(2);
+ await page.getByRole('textbox',{name:'Вопрос Ассистенту'}).fill('Собери решения');await page.getByRole('tab',{name:/^Транскрипция:/}).click();await expect(page.getByRole('textbox',{name:'Вопрос Ассистенту'})).toHaveValue('Собери решения');
+ await page.getByRole('button',{name:'Сведения',exact:true}).click();await expect(page.getByRole('heading',{name:'Сведения о записи'})).toBeVisible();await page.getByRole('tab',{name:/^Резюме:/}).click();await page.screenshot({path:'qa/vini-record.png'});
+ await page.getByRole('button',{name:'Вернуться к списку'}).click();await page.getByRole('button',{name:'Добавить',exact:true}).click();await expect(page.getByRole('menuitem',{name:'Загрузить файл'})).toBeVisible();await page.keyboard.press('Escape');
+ await page.getByRole('button',{name:'Записать',exact:true}).click();await expect(page.getByRole('button',{name:'Пауза',exact:true})).toBeVisible();expect(errors).toEqual([]);
+});
+test('VINi compact layout and genuine failure status',async({page})=>{await page.setViewportSize({width:1024,height:768});await page.goto('/');await expect(page.locator('.vini-record-row')).toHaveCount(9);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:'qa/vini-home-1024.png'});await expect(page.getByText('Материалы записи ещё готовятся.',{exact:true})).toHaveCount(0);});
+test('VINi modal dismiss and switch state',async({page})=>{const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/#/settings/connection');await page.getByRole('button',{name:'Изменить сервер',exact:true}).click();await expect(page.getByRole('dialog',{name:'Сменить сервер?'})).toBeVisible();await page.screenshot({path:'qa/vini-dialog.png'});await page.getByRole('button',{name:'Отмена',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);await page.goto('/#/settings/notifications');const control=page.getByRole('switch').first();const before=await control.getAttribute('aria-checked');await control.click();await expect(control).toHaveAttribute('aria-checked',before==='true'?'false':'true');expect(errors).toEqual([]);});

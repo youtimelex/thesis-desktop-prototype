@@ -1,0 +1,9 @@
+.invitation-draft-picker,.workspace-invitations { display:flex; flex-direction:column; gap:var(--vini-base-spacing-400); min-width:0; }
+.workspace-invitations { margin-top:var(--vini-base-spacing-700); }
+.invitation-choice,.invitation-draft-row { display:flex; align-items:center; gap:var(--vini-base-spacing-400); }
+.invitation-choice>label,.invitation-draft-row>span:first-child { flex:1; min-width:0; overflow-wrap:anywhere; }
+.invitation-choice>label { cursor:pointer; }
+.invitation-choice small,.invitation-draft-row small { display:block; color:var(--vini-theme-main-foreground-secondary); }
+.invitation-draft-row { flex-wrap:wrap; padding-block:var(--vini-base-spacing-300); border-bottom:1px solid var(--vini-theme-main-border); }
+
+@media(max-width:480px) { .invitation-draft-row > span:first-child { flex-basis:100%; } }

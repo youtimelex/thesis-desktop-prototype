@@ -1,0 +1,24 @@
+/* One compact heading treatment for static and collapsible property sections. */
+.record-properties-content .property-heading {
+  color: var(--main-foreground-secondary);
+  margin: 0;
+}
+.record-properties-content .property-heading {
+  width: 100%;
+  padding: 0;
+  justify-content: flex-start;
+  text-align: left;
+}
+.record-properties-content .property-heading > span:first-child { flex: 0 1 auto; text-align: left; }
+.record-properties-content .property-heading:not(.record-video-heading)[data-panel-open] :is(svg,.icon) { transform: rotate(180deg); }
+.record-properties-content .property-heading + [data-slot="collapsible-content"] { margin-top: var(--vini-base-spacing-300); }
+/* Align the existing VINi source media with the record title. */
+.dashboard-shell .record-heading > div:first-child { flex: 1; min-width: 0; }
+.dashboard-shell .record-title-with-type {
+  flex-direction: row;
+  align-items: center;
+}
+.dashboard-shell .record-title-with-type .record-source-frame { align-self: center; }
+.dashboard-shell .record-title-with-type .record-title-copy { flex: 1; min-width: 0; }
+.dashboard-shell .record-title-with-type h1 { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dashboard-shell .record-title-with-type .record-meta { margin-top: 0; }

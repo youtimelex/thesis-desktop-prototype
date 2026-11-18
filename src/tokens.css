@@ -1,0 +1,54 @@
+/*
+ * Visual source: FoundationsVinteo, Figma 1abIt9RML8oppOU0iLWzIt.
+ * Blue / Dark, matched against the connected Mobile prototype 47421:142162.
+ * These are semantic aliases, not a new palette. No Figma library was updated.
+ * Typography: Headline/medium/1100 28/36; Body/regular/500 14/22;
+ * Body/regular/600 16/24; Caption/regular/400 12/16; Control/medium/500 14/20.
+ */
+:root {
+  color-scheme: dark;
+  --main-space: var(--vini-theme-main-space);
+  --main-base: var(--vini-theme-main-base);
+  --main-surface: var(--vini-theme-main-surface);
+  --main-surface-hover: var(--vini-theme-main-surface-hover);
+  --main-surface-active: var(--vini-theme-main-surface-active);
+  --secondary-pane-surface: var(--vini-theme-main-space);
+  --secondary-pane-selected: var(--main-surface-hover);
+  --secondary-pane-width: 270px;
+  --main-border: var(--vini-theme-main-border);
+  --main-border-strong: var(--vini-theme-main-border-strong);
+  --main-foreground-primary: var(--vini-theme-main-foreground-primary);
+  --main-foreground-secondary: var(--vini-theme-main-foreground-secondary);
+  --main-foreground-ghost: var(--vini-theme-main-foreground-ghost);
+  --main-foreground-disable: var(--vini-theme-main-foreground-disable);
+  --main-icon: var(--vini-theme-main-icon);
+  --acc-surface: var(--vini-theme-acc-surface);
+  --acc-surface-hover: var(--vini-theme-acc-surface-hover);
+  --acc-surface-active: var(--vini-theme-acc-surface-active);
+  --acc-border: var(--vini-theme-acc-border);
+  --acc-foreground-primary: var(--vini-theme-acc-foreground-primary);
+  --acc-foreground-secondary: var(--vini-theme-acc-foreground-secondary);
+  --acc-fill: var(--vini-theme-acc-fill);
+  --acc-fill-hover: var(--vini-theme-acc-fill-hover);
+  --acc-focus: var(--vini-theme-acc-focus);
+  --success-surface: var(--vini-theme-success-surface);
+  --success-foreground: var(--vini-theme-success-foreground-primary);
+  --warning-surface: var(--vini-theme-warning-surface);
+  --warning-foreground: var(--vini-theme-warning-foreground-primary);
+  --error-surface: var(--vini-theme-error-surface);
+  --error-foreground: var(--vini-theme-error-foreground-primary);
+  --record-fill: var(--vini-theme-error-fill);
+  --record-fill-hover: var(--vini-theme-error-fill-hover);
+  --font-default: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --sidebar-width: 216px;
+  --topbar-height: 52px;
+  --record-tabs-height: 64px;
+  --player-height: 104px;
+}
+
+:root[data-theme="light"] { color-scheme: light; }
