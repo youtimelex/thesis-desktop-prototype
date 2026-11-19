@@ -1,15 +1,39 @@
-.login-card .login-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--vini-base-spacing-600);
+.login-page {
+  block-size: 100%;
+  overflow: auto;
+  padding: var(--vini-base-spacing-600) var(--vini-base-spacing-500);
+  background: var(--vini-theme-main-space);
 }
 
-.login-card .login-actions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--vini-base-spacing-400);
+.login-page > * { flex-shrink: 0; }
+.login-container { margin-block: auto; }
+.login-centered { text-align: center; }
+.login-muted { color: var(--vini-theme-main-foreground-secondary); }
+.login-copy { margin: 0; }
+.login-server-address { overflow-wrap: anywhere; }
+
+/* VINi Dialog owns behavior; VINi Card owns the visible surface. */
+.login-help-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: color-mix(in srgb, var(--vini-base-absolute-black-500) 55%, transparent);
 }
 
-.login-card .login-actions > button {
-  width: 100%;
+.login-help-viewport {
+  position: fixed;
+  inset: 0;
+  z-index: 121;
+  display: grid;
+  align-items: safe center;
+  justify-items: center;
+  overflow: auto;
+  padding: var(--vini-base-spacing-500);
 }
+
+.login-help-popup {
+  inline-size: 100%;
+  max-inline-size: calc(var(--vini-base-spacing-500) * 30);
+}
+
+.login-help-actions { inline-size: 100%; }

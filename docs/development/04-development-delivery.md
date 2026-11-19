@@ -177,6 +177,7 @@ npm test
 | [workspace-accessibility.config.ts](../../tests/workspace-accessibility.config.ts) | Доступные сведения в компактных строках пространств |
 | [empty-focus.config.ts](../../tests/empty-focus.config.ts) | Восстановление фокуса в пустых результатах |
 | [menu-radio.config.ts](../../tests/menu-radio.config.ts) | Меню выбора и состояния radio-пунктов |
+| [login-vini.config.ts](../../tests/login-vini.config.ts) | Ввод адреса, демовход через SSO, справка, подтверждение смены сервера и фокус в обеих темах |
 
 Пример:
 

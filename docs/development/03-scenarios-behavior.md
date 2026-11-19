@@ -432,7 +432,18 @@ stateDiagram-v2
 изменения в preview не сохраняются. Подробные ключи и восстановление — в
 [архитектуре](02-architecture-data.md).
 
-Источники: [`SettingsPage`, `LoginPage`](../../src/Pages.tsx),
+Оба шага входа адаптируют пример [«Форма в карточке» из VINi Atlas](https://vini-atlas.twc1.net/#patterns/authentication):
+бренд над компактной карточкой, заголовок с пояснением по центру, одно основное
+действие и служебная подпись под карточкой. Полей почты и пароля и дополнительных
+провайдеров входа нет. Форма адреса опирается
+на `Form transaction`: адрес `thesis.sever.ru` предзаполнен и редактируем;
+именованная форма, `FieldGroup`, `FormField` с привязкой
+к `Input`, ошибка поля и `Button` в состоянии `progress`. Подтверждённый сервер
+показан через `Item`, справка — через `Dialog` с поверхностью `Card`, смена
+сервера — через `AlertDialog`. Это адаптация паттерна к демосценарию,
+а не реализация серверных ошибок и повтора сетевого запроса.
+
+Источники: [`SettingsPage`](../../src/Pages.tsx), [`LoginPage`](../../src/LoginPage.tsx),
 [`store.tsx`](../../src/store.tsx), [`appearance.tsx`](../../src/appearance.tsx),
 `normalizeServer`, `server`, `sign-in`, `sign-out`, `hydrateState` в
 [`model.ts`](../../src/model.ts).

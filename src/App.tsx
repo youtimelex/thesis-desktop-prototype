@@ -20,7 +20,7 @@ const RecordPage = lazy(() => import('./RecordPage.tsx'));
 const MeetingPage = lazy(() => import('./creation.tsx').then(m => ({ default: m.MeetingPage })));
 const RecorderPage = lazy(() => import('./creation.tsx').then(m => ({ default: m.RecorderPage })));
 const FoldersPage = lazy(() => import('./Pages.tsx').then(m => ({ default: m.FoldersPage })));
-const LoginPage = lazy(() => import('./Pages.tsx').then(m => ({ default: m.LoginPage })));
+const LoginPage = lazy(() => import('./LoginPage.tsx'));
 const MembersPage = lazy(() => import('./Pages.tsx').then(m => ({ default: m.MembersPage })));
 const SettingsPage = lazy(() => import('./Pages.tsx').then(m => ({ default: m.SettingsPage })));
 const WorkspacesPage = lazy(() => import('./Pages.tsx').then(m => ({ default: m.WorkspacesPage })));

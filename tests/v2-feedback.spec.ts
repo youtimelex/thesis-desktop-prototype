@@ -325,7 +325,7 @@ test('sign-out keeps confirmed server and SSO is offered only after server entry
   await sidebar(page).getByRole('button', { name: 'Настройки', exact: true }).click(); await page.getByRole('button', { name: 'Аккаунт', exact: true }).click();
   await page.getByRole('button', { name: 'Выйти из профиля' }).click(); await expect(page.getByRole('button', { name: 'Войти через SSO' })).toBeVisible();
   await expect(page.getByText('thesis.sever.ru', { exact: true })).toBeVisible(); await page.getByRole('button', { name: 'Изменить сервер' }).click();
-  await page.getByRole('dialog', { name: 'Сменить сервер?' }).getByRole('button', { name: 'Сменить сервер', exact: true }).click();
+  await page.getByRole('alertdialog', { name: 'Сменить сервер?' }).getByRole('button', { name: 'Сменить сервер', exact: true }).click();
   await expect(page.getByRole('textbox', { name: 'Адрес сервера' })).toBeVisible(); await expect(page.getByRole('button', { name: 'Войти через SSO' })).toHaveCount(0);
 });
 
